@@ -32,26 +32,25 @@
 
             <!-- Mule Maven Plugin with CloudHub configuration -->
             <plugin>
-                <groupId>org.mule.tools.maven</groupId>
-                <artifactId>mule-maven-plugin</artifactId>
-                <version>${mule.maven.plugin.version}</version>
-                <extensions>true</extensions>
-                <configuration>
-                    <cloudHub>
-                        <!-- Use Jenkins environment variables -->
-                        <username>${env.ANYPOINT_USERNAME}</username>
-                        <password>${env.ANYPOINT_PASSWORD}</password>
-                        <environment>${env.ENVIRONMENT}</environment>
-                        <applicationName>${env.APP_NAME}</applicationName>
-                        <workers>
-                            <amount>${env.WORKERS_AMOUNT}</amount>
-                            <type>${env.WORKERS_TYPE}</type>
-                        </workers>
-                    </cloudHub>
-                    <!-- Skip deploy for CI build -->
-                    <skipDeploy>${env.SKIP_DEPLOY}</skipDeploy>
-                </configuration>
-            </plugin>
+                
+    <groupId>org.mule.tools.maven</groupId>
+    <artifactId>mule-maven-plugin</artifactId>
+    <version>4.7.0</version>
+    <extensions>true</extensions>
+    <configuration>
+        <cloudHubDeployment>
+            <uri>https://anypoint.mulesoft.com</uri>
+            <muleVersion>4.11.0</muleVersion>
+            <username>${env.ANYPOINT_USERNAME}</username>
+            <password>${env.ANYPOINT_PASSWORD}</password>
+            <applicationName>${env.APP_NAME}</applicationName>
+            <environment>${env.ENVIRONMENT}</environment>
+            <region>${env.region}</region>
+            <workers>${env.workers}</workers>
+            <workerType>${env.worker-type}</workerType>
+        </cloudHubDeployment>
+    </configuration>
+</plugin>
 
             <!-- MUnit Plugin -->
             <plugin>
